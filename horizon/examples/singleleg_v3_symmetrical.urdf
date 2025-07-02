@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="singleleg_v3_symmetrical">
+  <link name="world"/>
+  <joint name="floating_base_joint" type="floating">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00029334 0 -0.034359"
+        rpy="0 0 0" />
+      <mass
+        value="8.9536" />
+      <inertia
+        ixx="0.026574"
+        ixy="0"
+        ixz="0"
+        iyy="0.0269548"
+        iyz="0"
+        izz="0.010455" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../spot_urdf/meshes/base_link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../spot_urdf/meshes/base_link.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="upper_leg">
+    <inertial>
+      <origin
+        xyz="-0.00056407 0 -0.01991"
+        rpy="0 0 0" />
+      <mass
+        value="1.4745" />
+      <inertia
+        ixx="0.0028592"
+        ixy="0"
+        ixz="0"
+        iyy="0.0036402"
+        iyz="0"
+        izz="0.0011411" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../spot_urdf/meshes/upper_leg.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../spot_urdf/meshes/upper_leg.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_hip"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.241"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="upper_leg" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="48"
+      velocity="30" />
+  </joint>
+  <transmission type="SimpleTransmission">
+    <joint name="joint_hip"/>
+    <actuator name="joint_hip_motor"/>
+  </transmission>
+  <link
+    name="lower_leg">
+    <inertial>
+      <origin
+        xyz="0.00053013 0 -0.0081972"
+        rpy="0 0 0" />
+      <mass
+        value="1.4317" />
+      <inertia
+        ixx="0.0018487"
+        ixy="0"
+        ixz="0"
+        iyy="0.0024226"
+        iyz="0"
+        izz="0.00095478" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../spot_urdf/meshes/lower_leg.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../spot_urdf/meshes/lower_leg.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_knee"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.2"
+      rpy="0 0 0" />
+    <parent
+      link="upper_leg" />
+    <child
+      link="lower_leg" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="48"
+      velocity="30" />
+  </joint>
+  <transmission type="SimpleTransmission">
+    <joint name="joint_knee"/>
+    <actuator name="joint_knee_motor"/>
+  </transmission>
+  <link
+    name="foot">
+    <inertial>
+      <origin
+        xyz="-0.002466 0 -0.012459"
+        rpy="0 0 0" />
+      <mass
+        value="0.13961" />
+      <inertia
+        ixx="2.7158E-05"
+        ixy="0"
+        ixz="0"
+        iyy="0.00017558"
+        iyz="0"
+        izz="0.00016799" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../spot_urdf/meshes/foot.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../spot_urdf/meshes/foot.dae" />
+      </geometry>
+    </collision>
+    <collision group="toe_l">
+      <origin rpy="0 0 0" xyz="0.07 0.03 -0.028"/>
+      <geometry>
+        <sphere radius="0.0"/>
+      </geometry>
+    </collision>
+    <visual group="toe_l">
+      <origin rpy="0 0 0" xyz="0.07 0.03 -0.028"/>
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision group="toe_r">
+      <origin rpy="0 0 0" xyz="0.07 -0.03 -0.028"/>
+      <geometry>
+        <sphere radius="0.0"/>
+      </geometry>
+    </collision>
+    <visual group="toe_r">
+      <origin rpy="0 0 0" xyz="0.07 -0.03 -0.028"/>
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision group="heel_l">
+      <origin rpy="0 0 0" xyz="-0.07 0.03 -0.028"/>
+      <geometry>
+        <sphere radius="0.0"/>
+      </geometry>
+    </collision>
+    <visual group="heel_l">
+      <origin rpy="0 0 0" xyz="-0.07 0.03 -0.028"/>
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision group="heel_r">
+      <origin rpy="0 0 0" xyz="-0.07 -0.03 -0.028"/>
+      <geometry>
+        <sphere radius="0.0"/>
+      </geometry>
+    </collision>
+    <visual group="heel_r">
+      <origin rpy="0 0 0" xyz="-0.07 -0.03 -0.028"/>
+      <geometry>
+        <sphere radius="0.005"/>
+      </geometry>
+    </visual>
+  </link>
+  <frame link="foot" name="foot_sole" xyz="0 0 -0.028"/>
+  <frame link="foot" name="foot_toe" xyz="0.07 0 -0.028"/>
+  <frame link="foot" name="foot_heel" xyz="-0.07 0 -0.028"/>
+  <frame link="foot" name="foot_toe_l" xyz="0.07 0.03 -0.028"/>
+  <frame link="foot" name="foot_toe_r" xyz="0.07 -0.03 -0.028"/>
+  <frame link="foot" name="foot_heel_l" xyz="-0.07 0.03 -0.028"/>
+  <frame link="foot" name="foot_heel_r" xyz="-0.07 -0.03 -0.028"/>
+  <joint
+    name="joint_ankle"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.2"
+      rpy="0 0 0" />
+    <parent
+      link="lower_leg" />
+    <child
+      link="foot" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="48"
+      velocity="30" />
+  </joint>
+  <transmission type="SimpleTransmission">
+    <joint name="joint_ankle"/>
+    <actuator name="joint_ankle_motor"/>
+  </transmission>
+</robot>
